@@ -4,10 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>CMake</title>
+		<title>LiTHehack - CMake</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -88,7 +87,7 @@
 
 				<section class="left fragments">
 					<h2>Make</h2>
-					<p>En sorts skript som beskriver hur ett projekt ska byggas, används ofta till C++.</p>
+					<p>Ett sorts skript som beskriver hur ett projekt ska byggas, används ofta till C++.</p>
 					<p class="fragment">Make är inte anpassat för att bygga projekt på olika plattformar.</p>
 				</section>
 
@@ -106,33 +105,52 @@
 				<section>
 					<img id="cmake-guden" src="img/cmake-guden.png">
 				</section>
-				<section>
-					<a href="https://github.com/LiTHehack/git-tips">https://github.com/LiTHehack/git-tips</a>
-					<pre><code class="bash" data-trim>
-						# kolla vilka filer som har ändringar sedan senaste commit
-git status
+				<section class="left fragments" data-transition="none-out">
+					<ul>
+						<li>
+							include/
+							<ul>
+								<li>calculator.hpp</li>
+							</ul>
+						</li>
+						<li>
+							src/
+							<ul>
+								<li>calculator.cpp</li>
+								<li>main.cpp</li>
+							</ul>
+						</li>
+						<li>CMakeLists.txt</li>
+					</ul>
+					<pre><code class="cmake" data-trim>
+cmake_minimum_required(VERSION 3.2)
+project(cmake-lecture)
 
-# säg vilka filers ändringar du committar
-git add exempel.html
+# allows C++ includes like #include "calculator.hpp"
+include_directories(include)
 
-# gör en commit med meddelandet "nice ny feature"
-git commit -m"nice ny feature"
-
-# pusha upp commits till remote
-git push
-
-# hämta commits från remote
-git pull
+# create an executable from the source files
 					</code></pre>
+					<ul>
+						<li>
+							<pre><code class="cmake" data-trim>
+add_executable(cmake-lecture src/main.cpp src/calculator.cpp)
+							</code></pre>
+						</li>
+						<li>
+							<pre><code class="cmake fragment" data-trim>
+set(SOURCE_FILES src/main.cpp src/calculator.cpp)
+add_executable(cmake-lecture ${SOURCE_FILES})
+							</code></pre>
+						</li>
+						<li>
+							<pre><code class="cmake fragment" data-trim>
+file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+add_executable(cmake-lecture ${SOURCE_FILES})
+							</code></pre>
+						</li>
 				</section>
-
-				<section>
-					<h1>Workshop!</h1>
-					<h3>Vi hjälper med installation, exempel, frågor, livet</h3>
-				</section>
-
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -148,7 +166,7 @@ git pull
 				history: true,
 				center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				transition: 'convex', 				// none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
 				dependencies: [
