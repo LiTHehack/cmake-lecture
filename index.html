@@ -105,18 +105,18 @@
 				<section>
 					<img id="cmake-guden" src="img/cmake-guden.png">
 				</section>
-				<section class="left fragments" data-transition="none-out">
-					<ul>
+				<section class="left fragments">
+					<ul style="font-size: 20px">
 						<li>
 							include/
 							<ul>
-								<li>calculator.hpp</li>
+								<li>Calculator.hpp</li>
 							</ul>
 						</li>
 						<li>
 							src/
 							<ul>
-								<li>calculator.cpp</li>
+								<li>Calculator.cpp</li>
 								<li>main.cpp</li>
 							</ul>
 						</li>
@@ -126,29 +126,34 @@
 cmake_minimum_required(VERSION 3.2)
 project(cmake-lecture)
 
-# allows C++ includes like #include "calculator.hpp"
+# allows C++ includes like #include "Calculator.hpp"
 include_directories(include)
 
 # create an executable from the source files
+add_executable(cmake-lecture src/main.cpp src/Calculator.cpp)
 					</code></pre>
+				</section>
+
+				<section class="fragments" data-transition="fade-out" data-transition-speed="fast">
+					<h2>CMake-språket</h2>
 					<ul>
-						<li>
-							<pre><code class="cmake" data-trim>
-add_executable(cmake-lecture src/main.cpp src/calculator.cpp)
-							</code></pre>
+						<li class="fragment">Designat för att hantera sökvägar och strängar</li>
+						<li class="fragment">
+							Definiera variabler, exempel: 
+							<br>
+							<pre><code class="cmake">set(MY_PATH ~/Pictures/lithebird.png)</pre></code>
 						</li>
-						<li>
-							<pre><code class="cmake fragment" data-trim>
-set(SOURCE_FILES src/main.cpp src/calculator.cpp)
-add_executable(cmake-lecture ${SOURCE_FILES})
-							</code></pre>
-						</li>
-						<li>
-							<pre><code class="cmake fragment" data-trim>
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
-add_executable(cmake-lecture ${SOURCE_FILES})
-							</code></pre>
-						</li>
+						<li class="fragment">
+							Inbyggda kommandon för att hantera bibliotek:
+							<ul>
+								<li class="fragment">find_library - letar efter bibliotek</li>
+								<li class="fragment">ExternalProject_Add - länka med externa projekt, t.ex. via GitHub</li>
+							</ul>
+						</ul>
+				</section>
+
+				<section data-transition="fade-in" data-transition-speed="slow">
+					<h1>Demo</h1>
 				</section>
 			</div>
 		</div>
