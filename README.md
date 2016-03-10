@@ -1,1 +1,1 @@
-Some slides for a quick lecture on git.
+Slides for an introductory lecture in CMake, the open source tool for structuring C++ projects.
